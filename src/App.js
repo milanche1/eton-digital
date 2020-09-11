@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import Navbar from "./components/layout/Navbar";
+import Products from "./components/Products/Products";
 
 class App extends Component {
   state = {
@@ -21,7 +22,9 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <div className="container"></div>
+        <div className="container">
+          <Products products={this.state.products} />
+        </div>
       </div>
     );
   }
