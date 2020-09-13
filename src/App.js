@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
+import Checkout from "./components/Checkout/Checkout";
 
 class App extends Component {
   state = {
     products: [],
+    checkout: [],
     loading: false,
   };
 
@@ -20,12 +23,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <Products products={this.state.products} />
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="container">
+            <Route
+              exact
+              component={() => <Products products={this.state.products} />}
+              path="/"
+            />
+            <Route exact component={Checkout} path="/cart" />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
