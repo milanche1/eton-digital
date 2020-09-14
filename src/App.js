@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
@@ -6,38 +6,39 @@ import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
 import Checkout from "./components/Checkout/Checkout";
 
-class App extends Component {
-  state = {
-    products: [],
-    checkout: [],
-    loading: false,
-  };
+const App = () => {
+  const [products, setProducts] = useState([]);
+  const [checkout, setCheckout] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  async componentDidMount() {
-    this.setState({ loading: true });
-    const res = await axios.get(
-      "https://my-json-server.typicode.com/brankostancevic/products/products"
-    );
-    this.setState({ products: res.data, loading: false });
-  }
+  useEffect(() => {
+    (async function getApi() {
+      setLoading(true);
+      const res = await axios.get(
+        "https://my-json-server.typicode.com/brankostancevic/products/products"
+      );
+      setProducts(res.data);
+      setLoading(false);
+    })();
+  }, []);
 
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <div className="container">
+  return (
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="container">
+          <Switch>
             <Route
               exact
-              component={() => <Products products={this.state.products} />}
+              component={() => <Products products={products} />}
               path="/"
             />
             <Route exact component={Checkout} path="/cart" />
-          </div>
+          </Switch>
         </div>
-      </Router>
-    );
-  }
-}
+      </div>
+    </Router>
+  );
+};
 
 export default App;
