@@ -8,9 +8,11 @@ export const ProductItems = (props) => {
         <h4>{props.product.title}</h4>
         <p>{props.product.price}$</p>
         <p>{props.product.description}</p>
-        <a href="#" className="cart-button">
-          Add To Cart
-        </a>
+        <div className="button-area">
+          <a href="#" className="btn btn-purple">
+            Add To Cart
+          </a>
+        </div>
       </div>
     </div>
   );

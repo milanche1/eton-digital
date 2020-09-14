@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
 import Checkout from "./components/Checkout/Checkout";
 import Spinner from "./components/layout/Spinner";
+import Dropdown from "./components/layout/Dropdown";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,9 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar>
+          <Dropdown />
+        </Navbar>
         <div className="container">
           {loading ? (
             <Spinner />
