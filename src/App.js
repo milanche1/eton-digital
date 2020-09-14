@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
 import Checkout from "./components/Checkout/Checkout";
+import Spinner from "./components/layout/Spinner";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +15,7 @@ const App = () => {
   useEffect(() => {
     (async function getApi() {
       setLoading(true);
+
       const res = await axios.get(
         "https://my-json-server.typicode.com/brankostancevic/products/products"
       );
@@ -27,14 +29,18 @@ const App = () => {
       <div className="App">
         <Navbar />
         <div className="container">
-          <Switch>
-            <Route
-              exact
-              component={() => <Products products={products} />}
-              path="/"
-            />
-            <Route exact component={Checkout} path="/cart" />
-          </Switch>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Switch>
+              <Route
+                exact
+                component={() => <Products products={products} />}
+                path="/"
+              />
+              <Route exact component={Checkout} path="/cart" />
+            </Switch>
+          )}
         </div>
       </div>
     </Router>
