@@ -12,17 +12,12 @@ const Navbar = (props) => {
           Shop
         </Link>
       </div>
-      {/* <Link
-        to="/cart"
-        style={{ cursor: "pointer", marginLeft: "30px", marginRight: "25px" }}
-      > */}
       <i
         style={{ cursor: "pointer", marginLeft: "30px", marginRight: "25px" }}
         onClick={() => setOpen(!open)}
-        class="fas fa-shopping-cart fa-2x"
+        className="fas fa-shopping-cart fa-2x"
       ></i>
       {open && props.children}
-      {/* </Link> */}
     </nav>
   );
 };

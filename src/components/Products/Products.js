@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { ProductItems } from "./ProductItems";
 
 const Products = (props) => {
+  const [checkout, setCheckout] = useState([]);
+
+  const checkoutFun = (id) => {
+    if (checkout.indexOf(id) === -1) {
+      setCheckout((oldArr) => [...oldArr, id]);
+      sendDataState();
+    } else {
+      return 0;
+    }
+  };
+
+  const sendDataState = () => {
+    props.addToState(checkout);
+  };
+
   return (
-    <div style={productStyle}>
+    <div style={productStyle} onChange={sendDataState}>
       {props.products.map((product) => {
-        return <ProductItems product={product} />;
+        return (
+          <ProductItems
+            checkoutFun={checkoutFun}
+            id={product.id}
+            product={product}
+          />
+        );
       })}
     </div>
   );

@@ -1,7 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
 import Checkout from "./components/Checkout/Checkout";
@@ -10,8 +10,16 @@ import Dropdown from "./components/layout/Dropdown";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [checkout, setCheckout] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [checkout, setCheckout] = useState([]);
+
+  const addToState = (state) => {
+    state.map((item) => {
+      setCheckout((oldArr) => [...oldArr, item]);
+    });
+  };
+
+  console.log(checkout);
 
   useEffect(() => {
     (async function getApi() {
@@ -29,7 +37,7 @@ const App = () => {
     <Router>
       <div className="App">
         <Navbar>
-          <Dropdown />
+          <Dropdown checkout={checkout} />
         </Navbar>
         <div className="container">
           {loading ? (
@@ -38,7 +46,9 @@ const App = () => {
             <Switch>
               <Route
                 exact
-                component={() => <Products products={products} />}
+                component={() => (
+                  <Products addToState={addToState} products={products} />
+                )}
                 path="/"
               />
               <Route exact component={Checkout} path="/cart" />

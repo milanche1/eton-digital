@@ -76,6 +76,11 @@ nav {
   margin-top: 10px;
 }
 
+.btn:hover {
+  color: white;
+  cursor: pointer;
+}
+
 .btn-purple {
   background: var(--primary-purple);
 }
@@ -94,8 +99,9 @@ nav {
   border-radius: 5px;
   padding: 1rem;
   overflow: hidden;
-  color: #333;
-  border-style: 1px solid #f2f2f2;
+  color: #000;
+  border-style: 10px solid #000;
+  z-index: 5;
 }
 
 .menu-items {
