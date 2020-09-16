@@ -4,9 +4,9 @@ import { ProductItems } from "./ProductItems";
 const Products = (props) => {
   const [checkout, setCheckout] = useState([]);
 
-  const checkoutFun = (id) => {
-    if (checkout.indexOf(id) === -1) {
-      setCheckout((oldArr) => [...oldArr, id]);
+  const checkoutFun = (product) => {
+    if (checkout.indexOf(product.id) === -1) {
+      setCheckout((oldArr) => [...oldArr, product.title]);
       sendDataState();
     } else {
       return 0;

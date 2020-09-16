@@ -15,12 +15,13 @@ const App = () => {
 
   const addToState = (state) => {
     state.map((item) => {
-      setCheckout((oldArr) => [...oldArr, item]);
+      if (checkout.includes(item)) {
+        return 0;
+      } else {
+        setCheckout((oldArr) => [...oldArr, item]);
+      }
     });
   };
-
-  console.log(checkout);
-
   useEffect(() => {
     (async function getApi() {
       setLoading(true);
@@ -32,7 +33,6 @@ const App = () => {
       setLoading(false);
     })();
   }, []);
-
   return (
     <Router>
       <div className="App">
@@ -51,7 +51,13 @@ const App = () => {
                 )}
                 path="/"
               />
-              <Route exact component={Checkout} path="/cart" />
+              <Route
+                exact
+                path="/cart"
+                component={() => {
+                  return <Checkout checkout={checkout} />;
+                }}
+              />
             </Switch>
           )}
         </div>
