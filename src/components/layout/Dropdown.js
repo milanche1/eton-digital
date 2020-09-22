@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../../context/ProductState";
 
-const Dropdown = (props) => {
-  console.log(props.checkout);
+const Dropdown = () => {
+  const context = useContext(ProductContext);
   return (
     <div className="dropdown">
       <h1>Hello World</h1>
       <ul>
-        {props.checkout.length > 0 ? (
-          props.checkout.map((item, index) => {
-            return <li>{item}</li>;
+        {context.checkout.length > 0 ? (
+          context.checkout.map((item) => {
+            return <li>{item.title}</li>;
           })
         ) : (
           <li>no items</li>

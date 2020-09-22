@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { ProductContext } from "../../context/ProductState";
 
 export const ProductItems = (props) => {
-  // const clickFunction = (e) => {
-  //   e.preventDefault();
-  //   props.checkoutFun(props.product);
-  // };
+  const context = useContext(ProductContext);
   return (
     <div className="card">
       <img src={props.product.image} alt="" />
@@ -13,7 +11,14 @@ export const ProductItems = (props) => {
         <p>{props.product.price}$</p>
         <p>{props.product.description}</p>
         <div className="button-area">
-          <a href="#" className="btn btn-purple">
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              context.checkoutProduct(props.product);
+            }}
+            href="#"
+            className="btn btn-purple"
+          >
             Add To Cart
           </a>
         </div>

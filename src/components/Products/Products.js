@@ -3,18 +3,14 @@ import { ProductContext } from "../../context/ProductState";
 import { ProductItems } from "./ProductItems";
 
 const Products = (props) => {
-  const [checkout, setCheckout] = useState([]);
   const context = useContext(ProductContext);
 
   useEffect(() => {
     context.getProducts();
   }, []);
 
-  const sendDataState = () => {
-    props.addToState(checkout);
-  };
   return (
-    <div style={productStyle} onChange={sendDataState}>
+    <div style={productStyle}>
       {context.products.map((product) => {
         return <ProductItems id={product.id} product={product} />;
       })}

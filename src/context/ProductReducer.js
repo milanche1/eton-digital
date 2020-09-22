@@ -5,6 +5,11 @@ export default (state, action) => {
         ...state,
         products: action.payload,
       };
+    case "CHECKOUT_PRODUCT":
+      return {
+        ...state,
+        checkout: [...state.checkout, action.payload],
+      };
     default:
       return state;
   }
