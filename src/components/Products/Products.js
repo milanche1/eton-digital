@@ -1,32 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../context/ProductState";
 import { ProductItems } from "./ProductItems";
 
 const Products = (props) => {
   const [checkout, setCheckout] = useState([]);
+  const context = useContext(ProductContext);
 
-  const checkoutFun = (product) => {
-    if (checkout.indexOf(product.id) === -1) {
-      setCheckout((oldArr) => [...oldArr, product.title]);
-      sendDataState();
-    } else {
-      return 0;
-    }
-  };
+  useEffect(() => {
+    context.getProducts();
+  }, []);
 
   const sendDataState = () => {
     props.addToState(checkout);
   };
-
   return (
     <div style={productStyle} onChange={sendDataState}>
-      {props.products.map((product) => {
-        return (
-          <ProductItems
-            checkoutFun={checkoutFun}
-            id={product.id}
-            product={product}
-          />
-        );
+      {context.products.map((product) => {
+        return <ProductItems id={product.id} product={product} />;
       })}
     </div>
   );

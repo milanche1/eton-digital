@@ -6,9 +6,9 @@ export const Checkout = (props) => {
   return (
     <div>
       <h2 className="text-center">Your Cart</h2>
-      <ul>
-        <li>check</li>
-      </ul>
+      {props.checkout.map((item) => {
+        return <li>{item}</li>;
+      })}
     </div>
   );
 };
