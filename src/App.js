@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Products from "./components/Products/Products";
 import Checkout from "./components/Checkout/Checkout";
 import Spinner from "./components/layout/Spinner";
 import Dropdown from "./components/layout/Dropdown";
-import { ProductContext, ProductProvider } from "./context/ProductState";
+import { ProductProvider } from "./context/ProductState";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [checkout, setCheckout] = useState([]);
   return (
     <ProductProvider>
       <Router>
         <div className="App">
           <Navbar>
-            <Dropdown checkout={checkout} />
+            <Dropdown />
           </Navbar>
           <div className="container">
             {loading ? (
@@ -29,7 +27,7 @@ const App = () => {
                   exact
                   path="/cart"
                   component={() => {
-                    return <Checkout checkout={checkout} />;
+                    return <Checkout />;
                   }}
                 />
               </Switch>

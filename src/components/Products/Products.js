@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../../context/ProductState";
 import { ProductItems } from "./ProductItems";
 
-const Products = (props) => {
+const Products = () => {
   const context = useContext(ProductContext);
 
   useEffect(() => {

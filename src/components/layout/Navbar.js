@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Checkout from "../Checkout/Checkout";
-import Dropdown from "./Dropdown";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {

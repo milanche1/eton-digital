@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../context/ProductState";
-import CheckoutItems from "./CheckoutItems";
 
 export const Checkout = () => {
   const context = useContext(ProductContext);
