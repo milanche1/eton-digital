@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import Spinner from "../layout/Spinner";
 import { ProductContext } from "../../context/ProductState";
 import { ProductItems } from "./ProductItems";
 
@@ -8,14 +9,17 @@ const Products = () => {
   useEffect(() => {
     context.getProducts();
   }, []);
-
-  return (
-    <div style={productStyle}>
-      {context.products.map((product) => {
-        return <ProductItems id={product.id} product={product} />;
-      })}
-    </div>
-  );
+  if (context.loading === true) {
+    return <Spinner />;
+  } else {
+    return (
+      <div style={productStyle}>
+        {context.products.map((product) => {
+          return <ProductItems id={product.id} product={product} />;
+        })}
+      </div>
+    );
+  }
 };
 
 const productStyle = {

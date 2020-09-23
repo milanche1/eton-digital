@@ -8,10 +8,12 @@ export const ProductProvider = (props) => {
   const initialState = {
     products: [],
     checkout: [],
+    loading: false,
   };
   const [state, dispatch] = useReducer(ProductReducer, initialState);
 
   const getProducts = async () => {
+    setLoading();
     const res = await axios.get(
       "https://my-json-server.typicode.com/brankostancevic/products/products"
     );
@@ -28,11 +30,18 @@ export const ProductProvider = (props) => {
     });
   };
 
+  const setLoading = () => {
+    dispatch({
+      type: "SET_LOADING",
+    });
+  };
+
   return (
     <ProductContext.Provider
       value={{
         products: state.products,
         checkout: state.checkout,
+        loading: state.loading,
         getProducts,
         checkoutProduct,
       }}

@@ -18,20 +18,16 @@ const App = () => {
             <Dropdown />
           </Navbar>
           <div className="container">
-            {loading ? (
-              <Spinner />
-            ) : (
-              <Switch>
-                <Route exact component={Products} path="/" />
-                <Route
-                  exact
-                  path="/cart"
-                  component={() => {
-                    return <Checkout />;
-                  }}
-                />
-              </Switch>
-            )}
+            <Switch>
+              <Route exact component={Products} path="/" />
+              <Route
+                exact
+                path="/cart"
+                component={() => {
+                  return <Checkout />;
+                }}
+              />
+            </Switch>
           </div>
         </div>
       </Router>
