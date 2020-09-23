@@ -30,6 +30,8 @@ export const ProductProvider = (props) => {
     });
   };
 
+  const removeItem = (id) => {};
+
   const setLoading = () => {
     dispatch({
       type: "SET_LOADING",
@@ -44,6 +46,7 @@ export const ProductProvider = (props) => {
         loading: state.loading,
         getProducts,
         checkoutProduct,
+        removeItem,
       }}
     >
       {props.children}
